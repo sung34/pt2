@@ -7,13 +7,13 @@ import { School, Student, VocabularyBook } from "@/type/server/db-types";
 
 export default async function StudentsPage() {
   const [studentsRes, schoolsRes, vocabulariesRes] = await Promise.all([
-    fetch(`/api/students`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/students`, {
       next: { tags: ["students"], revalidate: 604800 }
     }),
-    fetch(`/api/schools`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/schools`, {
       next: { tags: ["schools"], revalidate: 604800 }
     }),
-    fetch(`/api/vocab-names`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/vocab-names`, {
       next: { tags: ["vocab-names"], revalidate: 604800 }
     })
   ]);
