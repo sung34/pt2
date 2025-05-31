@@ -6,14 +6,14 @@ import { Separator } from "@/components/ui/separator";
 export default async function StudentVocabPage() {
   const students: Student[] = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/vocabulary`, {
     method: "GET",
-    cache: "force-cache",
     next: {
+      revalidate: 604800,
       tags: ["student-active"],
     }
   })
     .then(res => res.json());
-  
-  
+
+
   return (
     <>
       <div className='mt-5'>

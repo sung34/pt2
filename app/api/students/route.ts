@@ -48,7 +48,7 @@ export async function PUT(req: Request) {
         .select("*");
   
       if (error) throw error;
-      revalidateTag("student"); 
+      revalidateTag("students"); 
       return NextResponse.json(data, { status: 200 });
     } catch (e: any) {
       console.error("Unexpected error in PUT Handler:", e.message);
