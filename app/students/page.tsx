@@ -1,4 +1,4 @@
-// export const dynamic = "force-static";
+export const dynamic = "auto";
 
 import { columns } from "@/components/student-page/columns";
 import DataTable from "@/components/student-page/data-table";
@@ -7,13 +7,13 @@ import { School, Student, VocabularyBook } from "@/type/server/db-types";
 
 export default async function StudentsPage() {
   const [studentsRes, schoolsRes, vocabulariesRes] = await Promise.all([
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/students`, {
+    fetch(`/api/students`, {
       next: { tags: ["students"], revalidate: 604800 }
     }),
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/schools`, {
+    fetch(`/api/schools`, {
       next: { tags: ["schools"], revalidate: 604800 }
     }),
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/vocab-names`, {
+    fetch(`/api/vocab-names`, {
       next: { tags: ["vocab-names"], revalidate: 604800 }
     })
   ]);
