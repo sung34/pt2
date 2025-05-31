@@ -1,57 +1,36 @@
-// 형태소 기본 타입
-export type MorphType = "ROOT" | "PREFIX" | "SUFFIX" | "COMPOUND";
-export type WordBookType = "중학기초1200" | "중학기본1800" | "고등기본1800" | "능률보카";
-export type PartOfSpeech = "NOUN" | "VERB" | "ADJECTIVE" | "ADVERB" | "PRONOUN" | "PREPOSITION" | "CONJUNCTION" | "INTERJECTION" | "N/A";
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-export type BaseWord<T extends PartOfSpeech, M extends MorphType> = {
-  term: string;
-  meanings: string[];
-  origin?: string;
-  wordBook: WordBookType;
-  partOfSpeech: T;
-  type: M;
-};
+## Getting Started
 
-export interface VerbExtras {
-  transitive: boolean;
-  intransitive: boolean;
-  phrasalForms?: string[];
-}
+First, run the development server:
 
-export interface AdjectiveExtras {
-  comparativeForm?: string;
-  superlativeForm?: string;
-  prefix?: PrefixWord;
-  suffix?: SuffixWord;
-  root?: RootWord;
-}
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-export interface NounExtras {
-  pluralForm?: string;
-  countable: boolean;
-}
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-export interface AdverbExtras {
-  comparativeForm?: string;
-  superlativeForm?: string;
-}
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-export interface CompoundExtras {
-  prefix?: PrefixWord;
-  root: RootWord;
-  suffix?: SuffixWord;
-}
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-export type Word<T extends PartOfSpeech, M extends MorphType> = BaseWord<T, M> & (
-  T extends "VERB" ? VerbExtras :
-  T extends "ADJECTIVE" ? AdjectiveExtras :
-  T extends "NOUN" ? NounExtras :
-  T extends "ADVERB" ? AdverbExtras :
-  T extends "PRONOUN" | "PREPOSITION" | "CONJUNCTION" | "INTERJECTION" ? {} :
-  T extends "COMPOUND" ? CompoundExtras :
-  {}
-);
+## Learn More
 
-export type RootWord = Word<"VERB" | "NOUN" | "ADJECTIVE" | "ADVERB", "ROOT">;
-export type PrefixWord = Word<"N/A", "PREFIX"> & { relatedForms?: string[] };
-export type SuffixWord = Word<"N/A", "SUFFIX"> & { relatedForms?: string[] }; 
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

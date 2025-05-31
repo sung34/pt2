@@ -1,12 +1,6 @@
-import { ModeToggle } from "../components/mode-toggle";
+import { redirect } from "next/navigation";
 
-
-export default function Home() {
-  return (
-    <main className="flex flex-col items-center justify-center min-h-screen gap-8">
-      <div className="w-full flex justify-end">
-        <ModeToggle />
-      </div>
-    </main>
-  );
+export default function Page() {
+  redirect("/students");
+  return null;
 }
