@@ -1,5 +1,5 @@
 // lib/student-api.ts
-import { supabase } from "@/lib/supabaseClient";
+import { supabase } from "@/lib/supabase/supabaseClient";
 import { School, Student, VocabularyBook } from "@/type/server/db-types";
 
 export async function fetchActiveStudents(): Promise<Student[]> {

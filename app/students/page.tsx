@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic"; 
 
 import { columns } from "@/components/student-page/columns";
 import DataTable from "@/components/student-page/data-table";
