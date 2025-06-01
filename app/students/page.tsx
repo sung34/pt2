@@ -1,4 +1,4 @@
-export const dynamic = "force-dynamic"; 
+export const dynamic = "force-dynamic";
 
 import { columns } from "@/components/student-page/columns";
 import DataTable from "@/components/student-page/data-table";
@@ -15,17 +15,17 @@ export default async function StudentsPage() {
   ]);
 
 
-  return (<>
-    <div className="mt-5">
-      <h1 className="text-2xl font-bold mb-4">
-        학생 관리
-      </h1>
-      <Separator />
-    </div>
+  return (
+    <>
+      <div className="mt-5">
+        <h1 className="text-2xl font-bold mb-4">
+          학생 관리
+        </h1>
+        <Separator />
+      </div>
+      <DataTable columns={columns} data={students} meta={{ schools, vocabularies }} />
 
-    <DataTable columns={columns} data={students} meta={{ schools, vocabularies }} />
-
-  </>
+    </>
 
   )
 } 

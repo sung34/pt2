@@ -38,7 +38,7 @@ import { Input } from '@/components/ui/input'
 import { ScrollArea } from '@radix-ui/react-scroll-area'
 import { ScrollBar } from '../ui/scroll-area'
 import { School, Student, VocabularyBook } from '@/type/server/db-types'
-import { StudentSheet } from '../student-sheet'
+import { StudentSheet } from './student-sheet'
 
 interface CustomTableMeta extends TableMeta<Student> {
   schools?: School[];

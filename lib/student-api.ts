@@ -1,8 +1,9 @@
 // lib/student-api.ts
-import { supabase } from "@/lib/supabase/supabaseClient";
+import { createServerSupabase } from "@/lib/supabase/supabaseServer";
 import { School, Student, VocabularyBook } from "@/type/server/db-types";
 
 export async function fetchActiveStudents(): Promise<Student[]> {
+  const supabase = await createServerSupabase();
   const { data, error, status } = await supabase
     .from("student")
     .select("*")
@@ -19,6 +20,7 @@ export async function fetchActiveStudents(): Promise<Student[]> {
 }
 
 export async function fetchAllStudents(): Promise<Student[]> {
+  const supabase = await createServerSupabase();
   const { data, error, status } = await supabase
     .from("student")
     .select("*");
@@ -36,6 +38,7 @@ export async function fetchAllStudents(): Promise<Student[]> {
 
 // vocabulary_book get api
 export async function fetchAllVocabularyBooks(): Promise<VocabularyBook[]> {
+  const supabase = await createServerSupabase();
   const { data, error, status } = await supabase
     .from("vocabulary_book")
     .select("*");
@@ -53,6 +56,7 @@ export async function fetchAllVocabularyBooks(): Promise<VocabularyBook[]> {
 
 // schools  get api
 export async function fetchAllSchools(): Promise<School[]> {
+  const supabase = await createServerSupabase();
   const { data, error, status } = await supabase
     .from("school")
     .select("*");
