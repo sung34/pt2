@@ -3,6 +3,7 @@ import { createServerSupabase } from "@/lib/supabase/supabaseServer";
 import { School, Student, VocabularyBook } from "@/type/server/db-types";
 
 export async function fetchActiveStudents(): Promise<Student[]> {
+  'use cache'
   const supabase = await createServerSupabase();
   const { data, error, status } = await supabase
     .from("student")
@@ -20,6 +21,8 @@ export async function fetchActiveStudents(): Promise<Student[]> {
 }
 
 export async function fetchAllStudents(): Promise<Student[]> {
+  'use cache'
+
   const supabase = await createServerSupabase();
   const { data, error, status } = await supabase
     .from("student")
@@ -38,6 +41,8 @@ export async function fetchAllStudents(): Promise<Student[]> {
 
 // vocabulary_book get api
 export async function fetchAllVocabularyBooks(): Promise<VocabularyBook[]> {
+  'use cache'
+
   const supabase = await createServerSupabase();
   const { data, error, status } = await supabase
     .from("vocabulary_book")
@@ -56,6 +61,8 @@ export async function fetchAllVocabularyBooks(): Promise<VocabularyBook[]> {
 
 // schools  get api
 export async function fetchAllSchools(): Promise<School[]> {
+  'use cache'
+
   const supabase = await createServerSupabase();
   const { data, error, status } = await supabase
     .from("school")
