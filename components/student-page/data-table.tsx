@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import {
   ColumnDef,
@@ -39,6 +39,7 @@ import { ScrollArea } from '@radix-ui/react-scroll-area'
 import { ScrollBar } from '../ui/scroll-area'
 import { School, Student, VocabularyBook } from '@/type/server/db-types'
 import { StudentSheet } from './student-sheet'
+import { useStudentStore } from '@/lib/zustand/store/students'
 
 interface CustomTableMeta extends TableMeta<Student> {
   schools?: School[];
@@ -66,6 +67,8 @@ export default function DataTable<TData, TValue>({
   // 학생 시트 상태 관리
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const setStudents = useStudentStore(state => state.setStudents);
+  const students = useStudentStore(state => state.students);
 
   // 테이블 생성
   const table = useReactTable({
@@ -95,6 +98,8 @@ export default function DataTable<TData, TValue>({
     setIsSheetOpen(open);
     setSelectedStudent(null);
   }
+
+
 
   return (
     <>

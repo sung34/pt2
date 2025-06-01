@@ -1,17 +1,21 @@
-export const dynamic = "force-dynamic";
 
-import { columns } from "@/components/student-page/columns";
-import DataTable from "@/components/student-page/data-table";
+import StudentTable from "@/components/student-page/student-table";
 import { Separator } from "@/components/ui/separator";
-import { fetchAllStudents, fetchAllSchools, fetchAllVocabularyBooks } from "@/lib/student-api";
 
-export const revalidate = 604800;
 
 export default async function StudentsPage() {
   const [students, schools, vocabularies] = await Promise.all([
-    fetchAllStudents(),
-    fetchAllSchools(),
-    fetchAllVocabularyBooks()
+    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/students`, {
+      next: { tags: ['students'], revalidate: 86400 }
+    }).then(res => res.json()),
+  
+    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/schools`, {
+      next: { tags: ['schools'], revalidate: 604800 * 4  }
+    }).then(res => res.json()),
+  
+    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/vocab-books`, {
+      next: { tags: ['vocab-books'], revalidate: 604800 * 4 }
+    }).then(res => res.json()),
   ]);
 
 
@@ -23,8 +27,7 @@ export default async function StudentsPage() {
         </h1>
         <Separator />
       </div>
-      <DataTable columns={columns} data={students} meta={{ schools, vocabularies }} />
-
+      <StudentTable studentData={students} schools={schools} vocabularies={vocabularies} />
     </>
 
   )

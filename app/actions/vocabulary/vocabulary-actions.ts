@@ -1,12 +1,13 @@
 // app/actions/vocabularyActions.ts
 'use server';
 
-import { supabase } from '@/lib/supabase/supabaseClient'; // 서버용 Supabase 클라이언트
+import { createServerSupabase } from '@/lib/supabase/supabaseServer'; // 서버용 Supabase 클라이언트
 import { revalidateTag } from 'next/cache';
 import { Student } from '@/type/server/db-types';
 
 export async function saveStudentVocabulary(studentData: Partial<Student> & { student_id: string }) {
   const { student_id, ...dataToUpdate } = studentData;
+  const supabase = await createServerSupabase();
   const { error } = await supabase
     .from('student')
     .update(dataToUpdate)

@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic"; 
 
 import { Student } from "@/type/server/db-types";
 import Vocab from '@/components/vocabulary-page/vocab-editor';
