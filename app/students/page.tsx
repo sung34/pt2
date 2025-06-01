@@ -4,9 +4,6 @@ import { Separator } from "@/components/ui/separator";
 
 import { fetchAllSchools, fetchAllStudents, fetchAllVocabularyBooks } from "@/lib/student-table";
 
-export const revalidate = 604800;
-
-
 export default async function StudentsPage() {
   const [students, schools, vocabularies] = await Promise.all([
     fetchAllStudents(),
