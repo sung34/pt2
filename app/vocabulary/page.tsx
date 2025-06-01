@@ -4,8 +4,6 @@ import Vocab from '@/components/vocabulary-page/vocab-editor';
 import { Separator } from "@/components/ui/separator";
 import { fetchActiveStudents } from "@/lib/student-table";
 
-export const revalidate = 604800;
-
 export default async function StudentVocabPage() {
   const students: Student[] = await fetchActiveStudents();
 
