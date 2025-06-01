@@ -1,10 +1,9 @@
-// lib/student-api.ts
-import { createServerSupabase } from "@/lib/supabase/supabaseServer";
 import { School, Student, VocabularyBook } from "@/type/server/db-types";
+import { createSBClient } from "./supabase/supabaseCreateClient";
 
 export async function fetchActiveStudents(): Promise<Student[]> {
   'use cache'
-  const supabase = await createServerSupabase();
+  const supabase = await createSBClient();
   const { data, error, status } = await supabase
     .from("student")
     .select("*")
@@ -23,7 +22,7 @@ export async function fetchActiveStudents(): Promise<Student[]> {
 export async function fetchAllStudents(): Promise<Student[]> {
   'use cache'
 
-  const supabase = await createServerSupabase();
+  const supabase = await createSBClient();
   const { data, error, status } = await supabase
     .from("student")
     .select("*");
@@ -43,7 +42,7 @@ export async function fetchAllStudents(): Promise<Student[]> {
 export async function fetchAllVocabularyBooks(): Promise<VocabularyBook[]> {
   'use cache'
 
-  const supabase = await createServerSupabase();
+  const supabase = await createSBClient();
   const { data, error, status } = await supabase
     .from("vocabulary_book")
     .select("*");
@@ -63,7 +62,7 @@ export async function fetchAllVocabularyBooks(): Promise<VocabularyBook[]> {
 export async function fetchAllSchools(): Promise<School[]> {
   'use cache'
 
-  const supabase = await createServerSupabase();
+  const supabase = await createSBClient();
   const { data, error, status } = await supabase
     .from("school")
     .select("*");

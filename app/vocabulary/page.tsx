@@ -2,7 +2,7 @@
 import { Student } from "@/type/server/db-types";
 import Vocab from '@/components/vocabulary-page/vocab-editor';
 import { Separator } from "@/components/ui/separator";
-import { fetchActiveStudents } from "@/lib/student-table";
+import { fetchActiveStudents } from "@/lib/student-table-server";
 
 export default async function StudentVocabPage() {
   const students: Student[] = await fetchActiveStudents();

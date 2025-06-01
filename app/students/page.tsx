@@ -2,7 +2,7 @@
 import StudentTable from "@/components/student-page/student-table";
 import { Separator } from "@/components/ui/separator";
 
-import { fetchAllSchools, fetchAllStudents, fetchAllVocabularyBooks } from "@/lib/student-table";
+import { fetchAllSchools, fetchAllStudents, fetchAllVocabularyBooks } from "@/lib/student-table-server";
 
 export default async function StudentsPage() {
   const [students, schools, vocabularies] = await Promise.all([
